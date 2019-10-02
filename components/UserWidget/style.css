@@ -1,0 +1,29 @@
+.user-widget {
+  /* */
+}
+
+.user-widget__element {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.user-widget__element--img {
+  border-radius: 50%;
+  height: 48px;
+  overflow: hidden;
+  width: 48px;
+}
+
+.user-widget__element--img img {
+  display: block;
+  max-width: 100%;
+}
+
+.user-widget__element--title {
+  font-size: 1.33rem;
+  line-height: var(--heading-line-height);
+}
+
+.user-widget__element--title + .user-widget__element--subtitle {
+  margin-top: -.75rem;
+}

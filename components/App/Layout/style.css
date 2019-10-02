@@ -1,0 +1,43 @@
+:root {
+  --color-background: #ffffff;
+  --color-surface-2: #2C2C2C;
+  /* Contrast "on" colors */
+  --color-on-surface-2: #ffffff;
+  --font-primary: 'Roboto', sans-serif;
+  --heading-line-height: 1.15;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: 14px;
+  line-height: 1.42;
+  margin: 0;
+}
+
+.layout {
+  background-color: var(--color-background);
+}
+
+.layout__wrapper {
+  display: grid;
+  grid-template-areas: "header content";
+  min-height: 100vh;
+}
+
+.layout__header {
+  grid-area: header;
+}
+
+.layout__content {
+  grid-area: content;
+}
+
+/* Additionnal */
+.layout__header {
+  background-color: var(--color-surface-2);
+}
+
