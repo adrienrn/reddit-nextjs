@@ -1,20 +1,44 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 import AppLayout from 'components/App/Layout';
+import {Section, SectionBlock} from 'components/Section';
+import SubRedditFilter from 'containers/SubredditFilter';
+import PostList from 'containers/PostList';
+import RedditProvider from 'providers/RedditProvider';
+import {useStoreValue} from 'providers/StoreProvider';
 
-const Home = () => (
-  <React.Fragment>
-    <Head>
-      <title>Home</title>
-      <link rel='icon' href='/static/favicon.ico' importance='low' />
-      <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700,700i&display=swap" rel="stylesheet" />
-    </Head>
+const Home = () => {
+  const [store, dispatch] = useStoreValue();
+  const router = useRouter();
+  const {subReddit} = router.query;
 
-    <AppLayout>
-      Content
-    </AppLayout>
-  </React.Fragment>
-)
+  useEffect(() => {
+    dispatch({type: 'SUBREDDIT_SET', subReddit: subReddit});
+  }, [subReddit])
+
+  return (
+    <RedditProvider>
+      <Head>
+        <title>Home</title>
+      </Head>
+
+      <AppLayout>
+        <Section>
+          <SectionBlock>
+            <SubRedditFilter />
+          </SectionBlock>
+        </Section>
+        <Section>
+          <SectionBlock>
+            <PostList subReddit={subReddit} />
+          </SectionBlock>
+        </Section>
+      </AppLayout>
+    </RedditProvider>
+  );
+}
 
 export default Home
+

@@ -1,10 +1,19 @@
 version: '3.3'
 services:
   node:
-    image: 'node:12'
     command: 'yarn dev -H 0.0.0.0'
+    image: 'node:12'
     ports:
       - '80:3000'
     working_dir: '/app'
     volumes:
-      - .:/app
+      - '.:/app'
+
+  cors_proxy:
+    command: 'node proxy/proxy.js'
+    image: 'node:12'
+    ports:
+      - '8081:8080'
+    working_dir: '/app'
+    volumes:
+      - '.:/app'

@@ -1,9 +1,16 @@
 :root {
+  /* Surfaces */
   --color-background: #ffffff;
+  --color-surface-1: #FAFAFA;
   --color-surface-2: #2C2C2C;
   /* Contrast "on" colors */
+  --color-on-surface-1: #2C2C2C;
   --color-on-surface-2: #ffffff;
   --font-primary: 'Roboto', sans-serif;
+  --elevation-1:  0 24px 38px 3px rgba(0,0,0,0.14),
+    0 9px 46px 8px rgba(0,0,0,0.12),
+    0 11px 15px -7px rgba(0,0,0,0.2)
+  ;
   --heading-line-height: 1.15;
 }
 
@@ -25,6 +32,7 @@ body {
 .layout__wrapper {
   display: grid;
   grid-template-areas: "header content";
+  grid-template-columns: 240px 1fr;
   min-height: 100vh;
 }
 
@@ -40,4 +48,3 @@ body {
 .layout__header {
   background-color: var(--color-surface-2);
 }
-

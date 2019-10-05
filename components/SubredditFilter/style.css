@@ -1,0 +1,35 @@
+.dropdown-wrapper {
+  align-items: center;
+  display: flex;
+  margin: auto;
+  max-width: 16rem;
+}
+
+.dropdown-wrapper > svg {
+  height: 2rem;
+  width: 2rem;
+}
+
+.dropdown-wrapper .dropdown {
+  border-bottom: 1px solid #e0e0e0;
+  flex: 1;
+  margin-left: 1rem;
+  padding: 1rem 0;
+}
+
+.dropdown-wrapper .nav {
+  list-style: none;
+  margin: 0;
+  padding: .33rem 0;
+}
+
+.dropdown-wrapper .nav__link {
+  color: var(--color-on-surface-1);
+  display: block;
+  padding: 1rem;
+  text-decoration: none;
+}
+
+.dropdown-wrapper .nav__link:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}

@@ -1,0 +1,11 @@
+.gallery {
+  box-shadow: var(--elevation-1);
+  border-radius: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 1.42rem;
+}
+
+.gallery__item + .gallery__item {
+  margin-top: 1.42rem;
+}

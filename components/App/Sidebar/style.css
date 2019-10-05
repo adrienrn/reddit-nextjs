@@ -1,0 +1,18 @@
+.sidebar--app {
+  background-color: var(--color-surface-2);
+  color: var(--color-on-surface-2);
+  fill: var(--color-on-surface-2);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sidebar--app .sidebar__block--user {
+  border-bottom: 1px solid #272727;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+}
+
+.sidebar--app .sidebar__block--navigation-primary {
+  flex-grow: 1;
+}

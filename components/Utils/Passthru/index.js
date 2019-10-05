@@ -7,3 +7,12 @@ export default function({ className }) {
     );
   };
 }
+
+export function ensureKeyProp(items, baseKey, field)
+{
+  return items.map((item) => {
+    item.key = baseKey + '--' + item[field];
+
+    return item;
+  })
+}

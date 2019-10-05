@@ -1,0 +1,49 @@
+.card {
+  background-color: var(--color-surface-1);
+  border-radius: 12px;
+  display: flex;
+  min-height: 140px;
+  overflow: hidden;
+}
+
+.card__block {
+  flex: 1;
+  padding: 1.42rem;
+}
+
+.card__block--img {
+  align-items: center;
+  background: #eeeeee;
+  display: flex;
+  flex-grow: 0;
+  min-width: 100px;
+  padding: 0;
+}
+
+.card__block--main {
+  padding-left: .92rem;
+}
+
+.card__block--img img {
+  max-width: 100%;
+}
+
+.card__element {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.card__element:last-child {
+  margin-bottom: 0;
+}
+
+.card__element--title {
+  color: var(--color-on-surface-1);
+  font-size: 1.71rem;
+  font-weight: normal;
+}
+
+.card__element--title a {
+  color: inherit;
+  text-decoration: none;
+}
