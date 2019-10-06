@@ -1,10 +1,13 @@
 import React, { createContext, useEffect, useContext, useReducer, useState } from 'react';
 
+import getConfig from "next/config";
+
+const { publicRuntimeConfig } = getConfig();
+
 const RestContext = createContext({});
 
 export function useApiClient() {
   const context = useContext(RestContext);
-
   return [context.client];
 }
 
@@ -34,13 +37,9 @@ export function useApiRequest(request) {
     try {
       dispatch({type: 'FETCHING'});
       client
-        .fetch(request.subReddit, {})
+        .fetch(request.subReddit, request.filters, request.limit, request.offset)
         .then((data) => {
-          const posts = data.data.children.map((child) => {
-            return child.data;
-          });
-
-          dispatch({type: 'SUCCESS', response: posts});
+          dispatch({type: 'SUCCESS', response: data});
 
           return data;
         })
@@ -53,6 +52,10 @@ export function useApiRequest(request) {
       console.log(error);
       dispatch({type: 'ERROR', });
     }
+  };
+
+  const fetchMore = () => {
+    const currentData = data;
   };
 
   return {
@@ -90,7 +93,11 @@ function handleAPIError(response) {
 }
 
 function denormalize(data) {
-  return data;
+  const iterableData = data.data.children.map((child) => {
+    return child.data;
+  });
+
+  return iterableData;
 }
 
 function createDataProvider() {
@@ -109,10 +116,10 @@ function createDataProvider() {
       }
 
       const endpointUrl = new URL(
-        'http://172.17.97.61:8081/https://reddit.com/r' + '/' + resourceEndpoint.replace(/^\//, '') + '.json',
+        publicRuntimeConfig.redditApiUrl + '/r' + '/' + resourceEndpoint.replace(/^\//, '') + '/new.json',
       );
 
-      endpointUrl.searchParams.set('take', limit || defaultLimit);
+      endpointUrl.searchParams.set('limit', limit || defaultLimit);
       endpointUrl.searchParams.set('skip', offset || defaultOffset);
 
       return fetch(endpointUrl)
@@ -121,6 +128,22 @@ function createDataProvider() {
     },
     getEndpoint: function() {
       return endpoint;
+    },
+    searchSubReddit: function(filters, limit, offset) {
+      const endpointUrl = new URL(
+        publicRuntimeConfig.redditApiUrl + '/subreddits/search.json',
+      );
+
+      if (filters) {
+        Object.keys(filters).map((filterName) => {
+          endpointUrl.searchParams.set(filterName, filters[filterName]);
+        });
+      }
+
+      return fetch(endpointUrl)
+        .then(handleAPIError)
+        .then(denormalize)
+      ;
     },
   };
 }

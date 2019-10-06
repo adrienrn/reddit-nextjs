@@ -1,18 +1,19 @@
 import PostCard from 'components/PostCard';
+import {Gallery, GalleryItem} from 'components/Gallery';
 
 import styles from './style.css';
 
 export default function({ posts })
 {
     return (
-      <ul className={styles['gallery']}>
+      <Gallery>
         {posts.map((post) => {
           return (
-            <li key={post.key} className={styles['gallery__item']}>
+            <GalleryItem key={post.key}>
               <PostCard {...post} />
-            </li>
+            </GalleryItem>
           );
         })}
-      </ul>
+      </Gallery>
     );
 }

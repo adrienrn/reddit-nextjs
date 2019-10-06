@@ -33,7 +33,7 @@ export default function({media, permalink, selftext, thumbnail, title, url})
         className={cx(styles['card__block'], styles['card__block--img'])}
         href={permalink}
       >
-        {thumbnail && 'default' !== thumbnail ? (
+        {thumbnail && 'https://' === thumbnail.slice(0, 8) ? (
           <img src={thumbnail} />
         ) : (
           <div className={

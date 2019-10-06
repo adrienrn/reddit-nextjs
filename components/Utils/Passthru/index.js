@@ -1,9 +1,9 @@
-export default function({ className }) {
-  return ({ children }) => {
+import cx from 'classnames';
+
+export default function(WrappedComponent, baseClassName) {
+  return ({ className, ...restOfProps }) => {
     return (
-      <div className={className}>
-        {children}
-      </div>
+      <WrappedComponent className={cx(baseClassName, className)} {...restOfProps} />
     );
   };
 }

@@ -17,11 +17,13 @@
   align-items: center;
   display: flex;
   letter-spacing: 0.035em;
+  opacity: .5;
   padding: 1rem 0;
 }
 
 .navigation__link--active {
   font-weight: 600;
+  opacity: 1;
 }
 
 .navigation__link__icon {

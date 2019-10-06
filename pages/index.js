@@ -15,11 +15,16 @@ const Home = () => {
   const {subReddit} = router.query;
 
   useEffect(() => {
-    dispatch({type: 'SUBREDDIT_SET', subReddit: subReddit});
+    let activeSubReddit = store.subReddits[0];
+    if (subReddit) {
+      activeSubReddit = (store.subReddits.filter((s) => (s.slug === subReddit)))[0];
+    }
+
+    dispatch({type: 'SUBREDDIT_SET', subReddit: activeSubReddit});
   }, [subReddit])
 
   return (
-    <RedditProvider>
+    <React.Fragment>
       <Head>
         <title>Home</title>
       </Head>
@@ -30,13 +35,9 @@ const Home = () => {
             <SubRedditFilter />
           </SectionBlock>
         </Section>
-        <Section>
-          <SectionBlock>
-            <PostList subReddit={subReddit} />
-          </SectionBlock>
-        </Section>
+        <PostList />
       </AppLayout>
-    </RedditProvider>
+    </React.Fragment>
   );
 }
 
