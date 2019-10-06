@@ -8,6 +8,8 @@ import {Section, SectionBlock} from 'components/Section';
 import {useApiClient, useApiRequest} from 'providers/RedditProvider';
 import {useStoreValue} from 'providers/StoreProvider';
 
+import styles from './style.css';
+
 export default function({ subReddit })
 {
   const [store, dispatch] = useStoreValue();
@@ -38,7 +40,7 @@ export default function({ subReddit })
           <SectionBlock>
             <PostList posts={ensureKeyProp(data, 'postList', 'id')} />
           </SectionBlock>
-          <SectionBlock>
+          <SectionBlock className={styles['section__block--footer']}>
             <ButtonPrimary>
               Load more
             </ButtonPrimary>

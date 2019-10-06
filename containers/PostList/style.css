@@ -1,0 +1,5 @@
+.section__block--footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 4rem;
+}
