@@ -29,7 +29,9 @@ Separating data and presentation usually makes unit testing easier, makes it pos
 
 ### CSS modules
 
-CSS modules allow us to produce
+CSS modules allow us to produce clean components.
+
+Most of the components could be abstracted in a separate repositories, only `components/App` and `containers/` are tightly coupled to the app itself.
 
 ## Next steps
 
